@@ -1,0 +1,17 @@
+# Virtual environment
+.venv/
+venv/
+
+# Data — download from Kaggle (see README)
+data/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# OS / editor
+.DS_Store
+.vscode/
