@@ -32,7 +32,9 @@ A single table, one row per customer:
 ## Methods
 
 - Loading, cleaning, and sanity-checking the dataset
-- Segmentation with `groupby` + `.agg`, and bucket analysis of continuous variables with `pd.cut`
+- Descriptive segmentation in SQL (in-memory SQLite): GROUP BY aggregation,
+  CASE WHEN bucketing of continuous variables, and UNION ALL to assemble the
+  combined-risk comparison
 - Feature engineering: categorical encoding, deliberate handling of a non-monotonic predictor, derived features
 - Logistic regression with `statsmodels` — coefficient significance, confidence intervals, odds-ratio interpretation
 - Classification evaluation: stratified train/test split, confusion matrix, precision / recall / F1, ROC-AUC, threshold selection under class imbalance
@@ -74,6 +76,7 @@ pip install -r requirements.txt
 - statsmodels (logistic regression + inference)
 - scikit-learn (train/test split, evaluation metrics)
 - Jupyter / VS Code
+- sqlite3
 
 ## Caveats
 
