@@ -2,18 +2,26 @@
 
 Descriptive and predictive analysis of retail-bank customer churn using the
 [Churn Modelling dataset](https://www.kaggle.com/datasets/shrutimechlearn/churn-modelling)
-— ~10,000 customers of a retail bank across France, Spain, and Germany, with
+: ~10,000 customers of a retail bank across France, Spain, and Germany, with
 demographics, account features, and a churn flag (`Exited`). The analysis answers
 two questions a junior analyst on a retention team might be asked.
 
 ## Key findings
 
-_Populated as the analysis is completed — see the notebooks for current state._
+- German customers churned at 32.4%, roughly double France and Spain, and produced about 40% of all churn despite being only about a quarter of the customer base.
+- Churn rose sharply with age and peaked in the fifties: customers aged 50–59 churned at 56.0%, compared with the overall baseline of 20.4%.
+- Inactive customers were the cleanest behavioral risk segment, churning at 26.9% versus 14.3% for active customers and accounting for about 64% of all churn.
+- Product count was strongly non-linear: two-product customers were the stickiest group at 7.6% churn, while three- and four-product customers churned at 82.7% and 100.0%, respectively, despite being small groups.
+- The highest-risk combined profile was inactive German customers aged 50–59, with an 86.3% churn rate, showing how risk concentrates when multiple churn signals overlap.
+- The logistic regression confirmed that age, German geography, inactivity, and product holdings predict churn independently, while balance and estimated salary did not remain significant after controls.
+- Balance looked important descriptively, but the model showed it was not an independent predictor, making it the clearest example of why modeling was needed beyond one-variable segmentation.
+- The model ranked churn risk well with ROC-AUC of 0.837; at a lower threshold around 0.3–0.35, it becomes a more useful retention scoring tool than the default 0.5 classifier.
+
 
 ## Questions explored
 
 1. **Which customer segments are most likely to churn, and what are they doing
-   differently?** Churn rates by geography, age, gender, product holdings, balance,
+   differently?** Churn rates by geography, age, product holdings, balance,
    and account activity, plus the highest-risk combined segments. (`01_exploration.ipynb`)
 2. **What factors most strongly predict churn, holding other factors constant?**
    A logistic regression model with interpreted coefficients (odds ratios),
@@ -36,7 +44,7 @@ A single table, one row per customer:
   CASE WHEN bucketing of continuous variables, and UNION ALL to assemble the
   combined-risk comparison
 - Feature engineering: categorical encoding, deliberate handling of a non-monotonic predictor, derived features
-- Logistic regression with `statsmodels` — coefficient significance, confidence intervals, odds-ratio interpretation
+- Logistic regression with `statsmodels`: coefficient significance, confidence intervals, odds-ratio interpretation
 - Classification evaluation: stratified train/test split, confusion matrix, precision / recall / F1, ROC-AUC, threshold selection under class imbalance
 - Visualization: bar charts and grouped comparisons against the baseline churn rate
 
@@ -82,7 +90,7 @@ pip install -r requirements.txt
 
 - The Churn Modelling dataset is a widely used teaching dataset with no documented
   real-world provenance; findings demonstrate method rather than production bank intelligence.
-- The analysis is observational — the model identifies predictors associated with churn, not causes.
+- The analysis is observational: the model identifies predictors associated with churn, not causes.
 - The data is a single cross-sectional snapshot with no time dimension, so churn timing and the
   behaviour leading up to churn cannot be observed.
 
