@@ -1,0 +1,1 @@
+Interactive Power BI dashboard summarizing churn KPIs and the geography, age, and product-count findings from the analysis.
